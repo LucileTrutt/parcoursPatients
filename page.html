@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Parcours des patients en CTCV</title>
+    
+    <link rel="stylesheet" href="css/style.css" />
+
+</head>
+
+<body>
+    <header>
+        <h1>Parcours des patients en CTCV</h1>
+    </header>
+    
+    <section id="sec0" width=95%>
+        <form class="param" id="pm0">
+            <p>
+                <span class="val"><label>Année : </label><select name="annee" id="annee" required>
+                    <option value="2017" selected>2017</option>
+                    <option value="2016">2016</option>
+            <!--
+                    <option value="2015">2015</option>
+                    <option value="2014">2014</option>
+                    <option value="2013">2013</option>
+            -->
+                </select></span>
+                
+                <span class="val">Niveau d'agrégation :
+                <input type="radio" name="niveau" id="um" value="um" checked required ><label class="lb_radio" for="um">UM</label>
+                <input type="radio" name="niveau" id="serv" value="serv" ><label class="lb_radio" for="serv">Service</label>
+                <input type="radio" name="niveau" id="pole" value="pole" ><label class="lb_radio" for="pole">Pôle</label>
+                <input type="radio" name="niveau" id="autoris" value="autoris" ><label class="lb_radio" for="autoris">Type d'autorisation</label></span>
+                            
+            </p>
+        </form>
+    </section>
+
+
+    <section id="sec1" width=95%>
+        <h2>Diagramme des parcours</h2>
+        <form class="param" id="pm1">
+            <p><strong>Paramètres :</strong></p>
+            <p>
+                <span class="val">Nombre maximal de mouvements : </span>
+                <span class="val"><label><em>avant</em> le premier bloc</label> : <input type="text" 
+                size="3" name="max_pre" id="max_pre" maxlength="2" placeholder="ex : 2" required /></span>
+                <span class="val"><label><em>après</em> le premier bloc</label> : <input type="text" 
+                size="3" name="max_post" id="max_post" maxlength="2" placeholder="ex : 5" required /></br></span>
+            </p><p>
+                <span class="val">Type de visualisation :
+                <input type="radio" name="vue" id="complet" value="complet" checked required ><label class="lb_radio" for="complet">Parcours complets</label>
+                <input type="radio" name="vue" id="cumul" value="cumul" required ><label class="lb_radio" for="cumul">Vue cumulée 
+                <span title="Cumul de toutes les interventions chirugicales dans le même rectangle : interventions initiales et reprises" class="help" ><small>
+                 (?) </small></span></label></span>
+            </p><p>
+                <span class="val"><label>Degré de regroupement
+                <span title="Proportion minimale des séjours qu'une localisation doit représenter pour ne pas rejoindre la catégorie « Autre »" class="help" ><small>
+                 (?) </small></span></label> : <input type="preci" size="3" id="preci" maxlength="3" placeholder="0-10" value="5" required /><span class="indic">% des séjours </span>
+                </span>
+                <span class="val"><input type="submit" class="bouton" id="bouton1" value="Lancer" /></span>
+            </p>
+             
+        </form>
+        <div class="result" id="r1">
+            <div class="graph" id="graph1" width="1300" height="600">
+                <svg id="svg1"></svg>
+            </div>
+            <aside class="tab_codes" id="tb1">
+                <p class="mask" id="mask1"><strong>Libellés</strong>&#8193;&#8193;&#9651;</p>
+                <p>Nombre&#160;de&#160;séjours&#160;:&#160;<span id="nb1">0</span></p>
+                <div class="lib">
+                    <table>
+                    <thead><tr><th>Code</th><th>Libellé</th></tr></thead>
+                    <tbody id="lib1"></tbody>
+                    </table>
+                </div>
+            </aside>
+            
+            <aside class="tab_codes" id="tb1bis">
+                <p class="mask" id="mask1bis"><strong>Libellés</strong>&#8193&#9665</p>
+            </aside>
+        </div>
+        
+    </section>
+
+
+    <section id="sec2">
+        <h2>Motifs de parcours les plus fréquents</h2>
+        <form class="param" id="pm2">
+            <p>
+                <span class="val"><strong>Paramètres :</strong></span>
+            </p>
+            <p>
+                <span class="val">Longueur du motif :</span>
+                <span class="val"><label>Minimum</label> : <input type="text" size="3" name="nb_motif" id="nb_motif_min" maxlength="2" placeholder="ex : 2" required /></span>
+                <span class="val"><label>Maximum</label> : <input type="text" size="3" name="nb_motif" id="nb_motif_max" maxlength="3" placeholder="ex : 4" required /></span>
+                <span class="val"></span>
+                <span class="val"></span>
+            </p>
+            <p>
+                <span class="val">Premier élément du motif :
+                <input type="radio" name="debut" id="debut-entree" value="Entrée"><label class="lb_radio" for="debut-entree">Entrée</label>
+                <input type="radio" name="debut" id="debut-bloc" value="Bloc CTCV"><label class="lb_radio" for="debut-bloc">Bloc CTCV</label>
+                <input type="radio" name="debut" id="debut-unite" value="unite"><label class="lb_radio" for="debut-unite">Code particulier : </label>
+                <input type="text" size="4" id="codeDeb" maxlength="4" placeholder="'0000'" />
+                <input type="radio" name="debut" id="debut-indif" value="" checked><label class="lb_radio" for="debut-indif">Indifférent</label>
+                </span>
+            </p>
+            <p>
+                <span class="val">Dernier élément du motif :
+                <input type="radio" name="fin" id="fin-entree" value="Sortie"><label class="lb_radio" for="fin-entree">Sortie</label>
+                <input type="radio" name="fin" id="fin-bloc" value="Bloc CTCV"><label class="lb_radio" for="fin-bloc">Bloc CTCV</label>
+                <input type="radio" name="fin" id="fin-unite" value="unite"><label class="lb_radio" for="fin-unite">Code particulier : </label>
+                <input type="text" size="4" id="codeFin" maxlength="4" placeholder="'0000'" />
+                <input type="radio" name="fin" id="fin-indif" value="" checked><label class="lb_radio" for="fin-indif">Indifférent</label>
+                </span>
+            </p>
+<!--
+            <p>
+                <span class="val">Position fixe du bloc dans le motif * :
+                <input type="radio" name="fixation" id="debut" value="debut"><label class="lb_radio" for="debut">en début</label>
+                <input type="radio" name="fixation" id="fin" value="fin" ><label class="lb_radio" for="fin">en fin</label>
+                <input type="radio" name="fixation" id="non" value="non" checked ><label class="lb_radio" for="non">non</label>
+                </span>
+            </p>
+            <p>
+                <span class="val"><label>Code du premier élément</label> : <input type="text" size="4" id="codeDeb" maxlength="4" placeholder="'0000'" /></span>
+                <span class="val"><label>Code du dernier élément</label> : <input type="text" size="4" id="codeFin" maxlength="4" placeholder="'0000'" /></span>
+                <span></span><span></span>
+            </p>
+            <p>
+                <span class="val"><label for="entree">Présence obligatoire de l'entrée : </label><input type="checkbox" name="entree" id="entree" /></span>
+                <span class="val"><label for="sortie">Présence obligatoire de la sortie : </label><input type="checkbox" name="sortie" id="sortie" /></span>
+                <span class="val"><input type="submit" class="bouton" id="bouton2" value="Lancer"/></span>
+            </p>
+-->
+<!--
+            <p>
+                <span class="val"></span>
+                <span class="val"><input type="submit" class="bouton" id="bouton2" value="Lancer"/></span>
+            </p>
+-->
+            <p>
+                <span id="suppl2"><em>Calculs supplémentaires</em>&#160; &#9661;</span>
+                <span class="sup" id="suppl2bis"><em>Calculs supplémentaires</em>&#160; &#9651;</span>
+                <span class="val"><input type="submit" class="bouton" id="bouton2" value="Lancer"/></span>
+<!--
+                <span><small>(* obligatoire)</small></span>
+-->
+<!--
+            </p>
+            <p class="sup">
+                <span class="val"><label for="jnp">Nombre total de journées non pertinentes : </label><input type="checkbox" name="jnp" id="jnp" /></span>
+-->
+            </p><p class="sup">
+                <span>Fréquence d'association :</span>
+            </p><p class="sup">
+                <span><input type="checkbox" name="fq_ps" id="fq_ps" /> <label for="fq_ps"><small>Premier élément &rArr; séquence
+                    <span class="help" title="Proportion d'occurences où le premier élément est suivi par le reste de cette séquence"> (?) </span></small></label></span>
+                <span><input type="checkbox" name="fq_sp" id="fq_sp" /> <label for="fq_sp"><small>Premier élément &lArr; séquence
+                    <span class="help" title="Proportion d'occurences où la suite de cette séquence est précédée par ce premier élément en particulier"> (?) </span></small></label><br /></span>
+                <span></span>
+            </p><p class="sup">
+                <span><input type="checkbox" name="fq_sd" id="fq_sd" /> <label for="fq_sd"><small>Séquence &rArr; dernier élément
+                    <span class="help" title="Proportion d'occurences où le début de la séquence est suivie par ce dernier élément en particulier"> (?) </span></small></label></span>
+                <span><input type="checkbox" name="fq_ds" id="fq_ds" /> <label for="fq_ds"><small>Séquence &lArr; dernier élément
+                    <span class="help" title="Proportion d'occurences où le dernier élément est précédé de ce début de séquence"> (?) </span></small></label></span>
+                <span></span>
+            </p>
+            
+            
+            
+        </form>
+        
+        <div class="result" id="r2">
+            <div class="graph" id="graph2">
+                <table id="block">
+                    <thead id="block0"><tr><th width=200px >Motif</th><th>Effectif<br/><span class="indic">(Séjours)</span></th>
+                    <th>Fréquence<br/>du motif<br/><span class="indic">(Séjours)</span></th><th>Occurences<br/><span class="indic">(Motifs)</span></th>
+                    <th id="tb_ps">Fréquence&#160;d'association<br/><small>Premier élément</small> &rArr; <small>séquence</small></th>
+                    <th id="tb_sp">Fréquence&#160;d'association<br/><small>Premier élément</small> &lArr; <small>séquence</small></th>
+                    <th id="tb_sd">Fréquence&#160;d'association<br/><small>Séquence</small> &rArr; <small>dernier élément</small></th>
+                    <th id="tb_ds">Fréquence&#160;d'association<br/><small>Séquence</small> &lArr; <small>dernier élément</small></th></tr></thead>
+                    <tbody id="block1"></tbody>
+                </table>
+            </div>
+            
+            <aside class="tab_codes" id="tb2">
+                <p class="mask" id="mask2"><strong>Libellés</strong>&#8193;&#8193;&#9651;</p>
+                <p>Nombre&#160;de&#160;séjours&#160;:&#160;<span id="nb2">0</span></p>
+                <div class="lib"><table >
+                <thead><tr><th>Code</th><th>Libellé</th></tr></thead>
+                <tbody id="lib2"></tbody>
+            </table></div></aside>
+            <aside class="tab_codes" id="tb2bis">
+                <p class="mask" id="mask2bis"><strong>Libellés</strong>&#8193;&#9665;</p>
+            </aside>
+        </div>
+    </section>
+    
+    <section id="sec3">
+        <h2>Répartition temporelle</h2>
+        <form class="param" id="pm3">
+            <p>
+<!--
+                <span class="val"><strong>Paramètres :</strong></span>
+            <p></p>
+-->
+                <span class="val"></span>
+                <span class="val"><input type="submit" class="bouton" id="bouton3" value="Lancer" /></span>
+                <span class="val"></span>
+            </p>
+        </form>
+        <div class="result" id="r3">
+            <div class="graph" id="graph3" width="1300" height="600">
+                <svg id="svg3"></svg>
+            </div>
+            <aside class="tab_codes" id="tb3">
+                <p class="mask" id="mask3"><strong>Libellés</strong>&#8193;&#8193;&#9651;</p>
+                <p>Nombre&#160;de&#160;séjours&#160;:&#160;<span id="nb3">0</span></p>
+                <div class="lib"><table >
+                <thead><tr><th>Code</th><th>Libellé</th></tr></thead>
+                <tbody id="lib3"></tbody>
+            </table></div></aside>
+            <aside class="tab_codes" id="tb3bis">
+                <p class="mask" id="mask3bis"><strong>Libellés</strong>&#8193;&#9665;</p>
+            </aside>
+        </div>
+    </section>
+
+
+    <script src="js/d3.v4.js"></script>
+    <script src="js/d3-sankey.js"></script>
+    <script src="js/sankey.js"></script>
+    <script src="js/block.js"></script>
+    <script src="js/area.js"></script>
+</body>
+
+</html>

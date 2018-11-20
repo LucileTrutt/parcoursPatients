@@ -2,7 +2,7 @@
 
 Interface de visualisation et d'analyse du parcours des patients au cours de leur séjour hospitalier.
 
-Le parcours d'un patient est représenté par la succession des unités médicales et des passages au bloc opératoire lors de son séjour dans un établissement hospitalier.
+Le parcours d'un patient est représenté par la succession  des passages au bloc opératoire et des unités médicales dans lesquelles il a été admis lors de son séjour dans un établissement hospitalier.
 Cette interface concerne les patients ayant bénéficié d'une intervention en chirurgie thoracique et cardio-vasculaire au CHU de Nantes en 2016 et 2017.
 
 

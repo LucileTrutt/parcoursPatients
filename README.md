@@ -8,7 +8,9 @@ Cette interface concerne les patients ayant bénéficié d'une intervention en c
 
 Pour accéder à l'interface : ouvrir la page web avec mozilla firefox.
 
-Pour plus d'explications sur le fonctionnement de l'outil et sur la préparation des données : lire le tutoriel en pdf.
+Pour plus d'explications sur le fonctionnement de l'outil et le contexte : lire le tutoriel en pdf.
 
-Les scripts de préparation des données seront ajoutés prochainement.
+Pour la préparation des données : les scripts et un guide d'utilisation sont fournis dans le dossier preparation. Il sera nécessaire de télécharger un outil externe, SPMF : http://www.philippe-fournier-viger.com/spmf/index.php?link=download.php
+
+
 Les jeux de données sont anonymisés. Il n'y aura pas de correspondance entre les fichiers donnés à titre d'exmple pour les scripts de data-management et les fichiers utilisés pour le fonctionnement de l'interface. Seule la structure des données est maintenue.

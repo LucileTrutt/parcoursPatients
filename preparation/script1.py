@@ -18,7 +18,7 @@ niveaux = ['um', 'serv', 'pole', 'autoris']
 # import de la base de séjours
 print('* Import des séjours')
 baseSej = []
-with open('ipp_annee5.csv', newline = '') as f:
+with open('rum.csv', newline = '') as f:
     reader = csv.reader(f, delimiter = ';')
     for row in reader:
         baseSej.append(row)
@@ -80,7 +80,7 @@ print(v)
 # import de la liste d'interventions chir
 print('* Import des actes chirurgicaux')
 chir = []
-with open('sqc_acte4.csv', newline = '') as f:
+with open('blocs.csv', newline = '') as f:
     reader = csv.reader(f,delimiter = ';')
     for row in reader:
         chir.append(row)        

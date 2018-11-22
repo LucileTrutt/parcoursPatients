@@ -1,820 +1,650 @@
 {
-	"2013": {
-		"autoris": {
-			"taille": 0
-		},
-		"pole": {
-			"taille": 0
-		},
-		"serv": {
-			"taille": 0
-		},
-		"um": {
-			"taille": 0
-		}
-	},
-	"2014": {
-		"autoris": {
-			"taille": 0
-		},
-		"pole": {
-			"taille": 0
-		},
-		"serv": {
-			"taille": 0
-		},
-		"um": {
-			"taille": 0
-		}
-	},
-	"2015": {
-		"autoris": {
-			"taille": 0
-		},
-		"pole": {
-			"taille": 0
-		},
-		"serv": {
-			"taille": 0
-		},
-		"um": {
-			"taille": 0
-		}
-	},
-	"2016": {
-		"autoris": {
+	"autoris": {
+		"2016": {
 			"0000": {
 				"col": 1,
 				"lib": "Bloc CTCV"
+			},
+			"0001": {
+				"col": 0,
+				"lib": "autoris1"
+			},
+			"0002": {
+				"col": 2,
+				"lib": "autoris2"
+			},
+			"0003": {
+				"col": 3,
+				"lib": "autoris3"
+			},
+			"0004": {
+				"col": 6,
+				"lib": "autoris4"
+			},
+			"0005": {
+				"col": 5,
+				"lib": "autoris5"
+			},
+			"0007": {
+				"col": 4,
+				"lib": "autoris7"
+			},
+			"0008": {
+				"col": 7,
+				"lib": "autoris8"
+			},
+			"0012": {
+				"col": 8,
+				"lib": "autoris12"
+			},
+			"taille": 9
+		},
+		"2017": {
+			"0000": {
+				"col": 1,
+				"lib": "Bloc CTCV"
+			},
+			"0001": {
+				"col": 0,
+				"lib": "autoris1"
+			},
+			"0002": {
+				"col": 2,
+				"lib": "autoris2"
+			},
+			"0003": {
+				"col": 3,
+				"lib": "autoris3"
+			},
+			"0004": {
+				"col": 5,
+				"lib": "autoris4"
+			},
+			"0005": {
+				"col": 6,
+				"lib": "autoris5"
+			},
+			"0006": {
+				"col": 4,
+				"lib": "autoris6"
+			},
+			"0007": {
+				"col": 7,
+				"lib": "autoris7"
+			},
+			"0008": {
+				"col": 11,
+				"lib": "autoris8"
+			},
+			"0012": {
+				"col": 8,
+				"lib": "autoris12"
+			},
+			"0015": {
+				"col": 12,
+				"lib": "autoris15"
+			},
+			"0016": {
+				"col": 9,
+				"lib": "autoris16"
+			},
+			"0017": {
+				"col": 10,
+				"lib": "autoris17"
+			},
+			"taille": 13
+		}
+	},
+	"pole": {
+		"2016": {
+			"0000": {
+				"col": 1,
+				"lib": "Bloc CTCV"
+			},
+			"0001": {
+				"col": 0,
+				"lib": "pole1"
+			},
+			"0002": {
+				"col": 2,
+				"lib": "pole2"
+			},
+			"0003": {
+				"col": 3,
+				"lib": "pole3"
+			},
+			"0005": {
+				"col": 4,
+				"lib": "pole5"
+			},
+			"taille": 5
+		},
+		"2017": {
+			"0000": {
+				"col": 1,
+				"lib": "Bloc CTCV"
+			},
+			"0001": {
+				"col": 0,
+				"lib": "pole1"
+			},
+			"0002": {
+				"col": 2,
+				"lib": "pole2"
+			},
+			"0003": {
+				"col": 4,
+				"lib": "pole3"
+			},
+			"0004": {
+				"col": 3,
+				"lib": "pole4"
+			},
+			"0005": {
+				"col": 5,
+				"lib": "pole5"
+			},
+			"0010": {
+				"col": 6,
+				"lib": "pole10"
+			},
+			"taille": 7
+		}
+	},
+	"serv": {
+		"2016": {
+			"0000": {
+				"col": 1,
+				"lib": "Bloc CTCV"
+			},
+			"0002": {
+				"col": 2,
+				"lib": "serv2"
+			},
+			"0003": {
+				"col": 4,
+				"lib": "serv3"
+			},
+			"0004": {
+				"col": 0,
+				"lib": "serv4"
+			},
+			"0005": {
+				"col": 9,
+				"lib": "serv5"
+			},
+			"0009": {
+				"col": 3,
+				"lib": "serv9"
+			},
+			"0011": {
+				"col": 5,
+				"lib": "serv11"
+			},
+			"0012": {
+				"col": 15,
+				"lib": "serv12"
+			},
+			"0013": {
+				"col": 14,
+				"lib": "serv13"
+			},
+			"0014": {
+				"col": 18,
+				"lib": "serv14"
+			},
+			"0015": {
+				"col": 8,
+				"lib": "serv15"
+			},
+			"0016": {
+				"col": 10,
+				"lib": "serv16"
+			},
+			"0017": {
+				"col": 12,
+				"lib": "serv17"
 			},
 			"0018": {
-				"col": 8,
-				"lib": "Soins intensifs en unit\u00e9 neurovasculaire"
-			},
-			"0027": {
-				"col": 9,
-				"lib": "M\u00e9decine g\u00e9riatrique"
-			},
-			"0029": {
-				"col": 4,
-				"lib": "Unit\u00e9 de m\u00e9decine indiff\u00e9renci\u00e9e"
-			},
-			"0051": {
-				"col": 7,
-				"lib": "Neurochirurgie"
-			},
-			"0053": {
-				"col": 0,
-				"lib": "Chirurgie indiff\u00e9renci\u00e9e adulte"
-			},
-			"0061": {
-				"col": 11,
-				"lib": "Unit\u00e9 de prise en charge de la douleur chronique"
-			},
-			"0101": {
-				"col": 2,
-				"lib": "R\u00e9animation adulte hors grands br\u00fbl\u00e9s"
-			},
-			"0201": {
-				"col": 5,
-				"lib": "Soins intensifs en cardiologie = USIC"
-			},
-			"0202": {
-				"col": 6,
-				"lib": "Autres soins intensifs"
-			},
-			"0301": {
-				"col": 3,
-				"lib": "Soins surveillance continue adulte hors grands br\u00fbl\u00e9s"
-			},
-			"0701": {
-				"col": 10,
-				"lib": "UHCD structures des urgences g\u00e9n\u00e9rales"
-			},
-			"taille": 12
-		},
-		"pole": {
-			"0000": {
-				"col": 1,
-				"lib": "Bloc CTCV"
-			},
-			"7070": {
-				"col": 5,
-				"lib": "GERONTOLOGIE CLINIQUE"
-			},
-			"7610": {
-				"col": 0,
-				"lib": "INST.THORAX ET S.NERVEUX"
-			},
-			"7620": {
-				"col": 4,
-				"lib": "OTONN"
-			},
-			"7630": {
-				"col": 3,
-				"lib": "ITUN-IMAD-DERMATO-HEMATO"
-			},
-			"7660": {
-				"col": 2,
-				"lib": "MED.URG.SOINS CRITIQUES"
-			},
-			"taille": 6
-		},
-		"serv": {
-			"0000": {
-				"col": 1,
-				"lib": "Bloc CTCV"
-			},
-			"1020": {
-				"col": 15,
-				"lib": "ENDOCRINOLOGIE"
-			},
-			"1040": {
-				"col": 24,
-				"lib": "MEDECINE INTERNE"
-			},
-			"1070": {
-				"col": 19,
-				"lib": "NEPHROLOGIE-IMMUNOLOGIE"
-			},
-			"1120": {
-				"col": 9,
-				"lib": "HEP.GAST.ENTERO.ASS.NUTRIT"
-			},
-			"1150": {
-				"col": 17,
-				"lib": "MAL.INFECTIONS.TROPICALES"
-			},
-			"1160": {
-				"col": 14,
-				"lib": "RHUMATOLOGIE HD"
-			},
-			"1210": {
-				"col": 12,
-				"lib": "NEUROLOGIE"
-			},
-			"1310": {
-				"col": 6,
-				"lib": "PNEUMOLOGIE"
-			},
-			"1410": {
-				"col": 4,
-				"lib": "CARDIOLOGIE"
-			},
-			"1510": {
-				"col": 13,
-				"lib": "DERMATOLOGIE"
-			},
-			"2010": {
-				"col": 21,
-				"lib": "CLIN.CHIR.DIG.ENDOCRIN."
-			},
-			"2062": {
-				"col": 11,
-				"lib": "DETENUS HGRL"
-			},
-			"2080": {
-				"col": 3,
-				"lib": "URGENCES-ACCUEIL"
-			},
-			"2081": {
-				"col": 23,
-				"lib": "UHCD"
-			},
-			"2082": {
-				"col": 18,
-				"lib": "URGENCE-MEDECINE POLYVALENTE"
-			},
-			"2210": {
-				"col": 20,
-				"lib": "UROLOGIE"
-			},
-			"2610": {
-				"col": 0,
-				"lib": "P17-C.T.C.V."
-			},
-			"2620": {
-				"col": 5,
-				"lib": "U.T.T."
-			},
-			"2630": {
 				"col": 16,
-				"lib": "CHIRURGIE VASCULAIRE"
-			},
-			"3430": {
-				"col": 10,
-				"lib": "NEUROCHIR-NEUROTRAUMATO"
-			},
-			"3810": {
-				"col": 8,
-				"lib": "MED. INTENSIVE-REA HD"
-			},
-			"3830": {
-				"col": 7,
-				"lib": "ANESTH.REA.CHIRURGICALE HD"
-			},
-			"3850": {
-				"col": 2,
-				"lib": "ANESTH.REA.CHIRURGICALE HGRL"
-			},
-			"6020": {
-				"col": 22,
-				"lib": "SERV. MED. AIGUE GERIAT."
-			},
-			"taille": 25
-		},
-		"um": {
-			"0000": {
-				"col": 1,
-				"lib": "Bloc CTCV"
-			},
-			"1020": {
-				"col": 24,
-				"lib": "UM ENDOCRINOLOGIE"
-			},
-			"1043": {
-				"col": 34,
-				"lib": "UM MAG HGRL"
-			},
-			"1064": {
-				"col": 37,
-				"lib": "MEDECINE INTERNE 7\u00e8E - U1"
-			},
-			"1070": {
-				"col": 29,
-				"lib": "UM NEPHROLOGIE"
-			},
-			"1120": {
-				"col": 18,
-				"lib": "UM HEP.GAST.ENTERO.ASS.NUTRIT"
-			},
-			"1150": {
-				"col": 26,
-				"lib": "MAL. INFECTIONS TROPICALES"
-			},
-			"1160": {
-				"col": 23,
-				"lib": "UM RHUMATOLOGIE HD"
-			},
-			"1210": {
-				"col": 27,
-				"lib": "UM NEUROLOGIE"
-			},
-			"1215": {
-				"col": 21,
-				"lib": "UM Neuro-vasculaire SI"
-			},
-			"1310": {
-				"col": 14,
-				"lib": "UM PNEUMOLOGIE"
-			},
-			"1322": {
-				"col": 16,
-				"lib": "Pneumo.Surv.Continue UMTR"
-			},
-			"1410": {
-				"col": 5,
-				"lib": "UM CARDIOLOGIE"
-			},
-			"1511": {
-				"col": 22,
-				"lib": "dermatologie g\u00e9n\u00e9rale"
-			},
-			"2010": {
-				"col": 33,
-				"lib": "UM CLIN.CHIR. DIGEST. ENDOCR."
-			},
-			"2062": {
-				"col": 20,
-				"lib": "UM DETENUS HGRL"
-			},
-			"2086": {
-				"col": 4,
-				"lib": "UHTCD"
-			},
-			"2088": {
-				"col": 28,
-				"lib": "MED.POLYV.URGENCE 6\u00e8E"
-			},
-			"2091": {
-				"col": 36,
-				"lib": "ZSCD Urgences"
-			},
-			"2210": {
-				"col": 30,
-				"lib": "UM UROLOGIE"
-			},
-			"2610": {
-				"col": 0,
-				"lib": "UM C.T.C.V."
-			},
-			"2620": {
-				"col": 10,
-				"lib": "UM U.T.T."
-			},
-			"2627": {
-				"col": 35,
-				"lib": "UM U.T.T. HDJ"
-			},
-			"2630": {
-				"col": 25,
-				"lib": "UM CHIRURGIE VASCULAIRE"
-			},
-			"3410": {
-				"col": 19,
-				"lib": "UM NEUROCHIRURGIE"
-			},
-			"3415": {
-				"col": 38,
-				"lib": "CETD"
-			},
-			"3710": {
-				"col": 8,
-				"lib": "Cardiologie Soins Intensifs"
-			},
-			"3711": {
-				"col": 9,
-				"lib": "UM Rythmologie SI"
-			},
-			"3740": {
-				"col": 12,
-				"lib": "Pneumologie Soins Intensifs"
-			},
-			"3762": {
-				"col": 3,
-				"lib": "UNITE SURV. CONTINUE CHIR."
-			},
-			"3763": {
-				"col": 11,
-				"lib": "SI transplant. coeur-poumons"
-			},
-			"3770": {
-				"col": 13,
-				"lib": "UM SURV. CONTINUE HD"
-			},
-			"3790": {
-				"col": 17,
-				"lib": "UM HGE SOINS INTENSIFS 2\u00e8S"
-			},
-			"3810": {
-				"col": 15,
-				"lib": "UM REA.MED.POLYV.JM"
-			},
-			"3811": {
-				"col": 31,
-				"lib": "USC M\u00e9dicale"
-			},
-			"3830": {
-				"col": 32,
-				"lib": "UM REA.CHIRURGICALE JM"
-			},
-			"3850": {
-				"col": 6,
-				"lib": "UM REA. CHIR. POLYVALENTE HGRL"
-			},
-			"3851": {
-				"col": 7,
-				"lib": "USC CHIR. POLY"
-			},
-			"3870": {
-				"col": 2,
-				"lib": "REA CTCV"
-			},
-			"taille": 39
-		}
-	},
-	"2017": {
-		"autoris": {
-			"0000": {
-				"col": 1,
-				"lib": "Bloc CTCV"
-			},
-			"0018": {
-				"col": 10,
-				"lib": "Soins intensifs en unit\u00e9 neurovasculaire"
+				"lib": "serv18"
 			},
 			"0021": {
 				"col": 13,
-				"lib": "Centre d'h\u00e9modialyse pour adulte"
+				"lib": "serv21"
 			},
-			"0027": {
+			"0022": {
+				"col": 7,
+				"lib": "serv22"
+			},
+			"0024": {
+				"col": 20,
+				"lib": "serv24"
+			},
+			"0026": {
+				"col": 6,
+				"lib": "serv26"
+			},
+			"0028": {
+				"col": 19,
+				"lib": "serv28"
+			},
+			"0031": {
+				"col": 17,
+				"lib": "serv31"
+			},
+			"0041": {
+				"col": 11,
+				"lib": "serv41"
+			},
+			"taille": 21
+		},
+		"2017": {
+			"0000": {
+				"col": 1,
+				"lib": "Bloc CTCV"
+			},
+			"0001": {
+				"col": 0,
+				"lib": "serv1"
+			},
+			"0002": {
+				"col": 2,
+				"lib": "serv2"
+			},
+			"0003": {
+				"col": 4,
+				"lib": "serv3"
+			},
+			"0004": {
+				"col": 6,
+				"lib": "serv4"
+			},
+			"0005": {
+				"col": 13,
+				"lib": "serv5"
+			},
+			"0007": {
+				"col": 19,
+				"lib": "serv7"
+			},
+			"0008": {
+				"col": 3,
+				"lib": "serv8"
+			},
+			"0009": {
+				"col": 7,
+				"lib": "serv9"
+			},
+			"0010": {
+				"col": 8,
+				"lib": "serv10"
+			},
+			"0011": {
+				"col": 9,
+				"lib": "serv11"
+			},
+			"0012": {
+				"col": 14,
+				"lib": "serv12"
+			},
+			"0013": {
+				"col": 20,
+				"lib": "serv13"
+			},
+			"0014": {
+				"col": 15,
+				"lib": "serv14"
+			},
+			"0015": {
+				"col": 10,
+				"lib": "serv15"
+			},
+			"0016": {
 				"col": 16,
-				"lib": "M\u00e9decine g\u00e9riatrique"
+				"lib": "serv16"
+			},
+			"0018": {
+				"col": 23,
+				"lib": "serv18"
+			},
+			"0021": {
+				"col": 24,
+				"lib": "serv21"
+			},
+			"0022": {
+				"col": 11,
+				"lib": "serv22"
+			},
+			"0024": {
+				"col": 22,
+				"lib": "serv24"
+			},
+			"0026": {
+				"col": 5,
+				"lib": "serv26"
 			},
 			"0029": {
-				"col": 4,
-				"lib": "Unit\u00e9 de m\u00e9decine indiff\u00e9renci\u00e9e"
+				"col": 18,
+				"lib": "serv29"
 			},
-			"0040": {
-				"col": 9,
-				"lib": "Unit\u00e9 d'hospitalisation d'oncologie m\u00e9dicale"
-			},
-			"0043": {
+			"0031": {
 				"col": 12,
-				"lib": "Unit\u00e9 de chimioth\u00e9rapie ambulatoire"
+				"lib": "serv31"
 			},
-			"0050": {
+			"0037": {
+				"col": 17,
+				"lib": "serv37"
+			},
+			"0038": {
+				"col": 25,
+				"lib": "serv38"
+			},
+			"0041": {
+				"col": 21,
+				"lib": "serv41"
+			},
+			"taille": 26
+		}
+	},
+	"um": {
+		"2016": {
+			"0000": {
+				"col": 1,
+				"lib": "Bloc CTCV"
+			},
+			"0002": {
+				"col": 2,
+				"lib": "um2"
+			},
+			"0003": {
+				"col": 3,
+				"lib": "um3"
+			},
+			"0004": {
+				"col": 8,
+				"lib": "um4"
+			},
+			"0005": {
+				"col": 0,
+				"lib": "um5"
+			},
+			"0009": {
+				"col": 6,
+				"lib": "um9"
+			},
+			"0012": {
 				"col": 5,
-				"lib": "Chirurgie cardiaque"
+				"lib": "um12"
 			},
-			"0051": {
+			"0014": {
+				"col": 7,
+				"lib": "um14"
+			},
+			"0015": {
+				"col": 10,
+				"lib": "um15"
+			},
+			"0016": {
+				"col": 24,
+				"lib": "um16"
+			},
+			"0017": {
+				"col": 4,
+				"lib": "um17"
+			},
+			"0018": {
+				"col": 23,
+				"lib": "um18"
+			},
+			"0020": {
+				"col": 28,
+				"lib": "um20"
+			},
+			"0021": {
+				"col": 15,
+				"lib": "um21"
+			},
+			"0022": {
+				"col": 19,
+				"lib": "um22"
+			},
+			"0024": {
+				"col": 25,
+				"lib": "um24"
+			},
+			"0026": {
 				"col": 14,
-				"lib": "Neurochirurgie"
+				"lib": "um26"
+			},
+			"0028": {
+				"col": 16,
+				"lib": "um28"
+			},
+			"0031": {
+				"col": 9,
+				"lib": "um31"
+			},
+			"0033": {
+				"col": 22,
+				"lib": "um33"
+			},
+			"0035": {
+				"col": 31,
+				"lib": "um35"
+			},
+			"0036": {
+				"col": 13,
+				"lib": "um36"
+			},
+			"0044": {
+				"col": 11,
+				"lib": "um44"
+			},
+			"0045": {
+				"col": 29,
+				"lib": "um45"
 			},
 			"0053": {
-				"col": 0,
-				"lib": "Chirurgie indiff\u00e9renci\u00e9e adulte"
+				"col": 26,
+				"lib": "um53"
+			},
+			"0054": {
+				"col": 27,
+				"lib": "um54"
+			},
+			"0067": {
+				"col": 32,
+				"lib": "um67"
+			},
+			"0068": {
+				"col": 30,
+				"lib": "um68"
 			},
 			"0070": {
-				"col": 11,
-				"lib": "Gyn\u00e9cologie seule"
-			},
-			"0101": {
-				"col": 2,
-				"lib": "R\u00e9animation adulte hors grands br\u00fbl\u00e9s"
-			},
-			"0201": {
-				"col": 6,
-				"lib": "Soins intensifs en cardiologie = USIC"
-			},
-			"0202": {
-				"col": 7,
-				"lib": "Autres soins intensifs"
-			},
-			"0301": {
-				"col": 3,
-				"lib": "Soins surveillance continue adulte hors grands br\u00fbl\u00e9s"
-			},
-			"0701": {
-				"col": 8,
-				"lib": "UHCD structures des urgences g\u00e9n\u00e9rales"
-			},
-			"1401": {
-				"col": 15,
-				"lib": "Soins surveillance continue p\u00e9diatrique hors grands br\u00fbl\u00e9s"
-			},
-			"taille": 17
-		},
-		"pole": {
-			"0000": {
-				"col": 1,
-				"lib": "Bloc CTCV"
-			},
-			"7070": {
-				"col": 6,
-				"lib": "GERONTOLOGIE CLINIQUE"
-			},
-			"7090": {
-				"col": 3,
-				"lib": "FEMME-ENFANT-ADOLESCENT"
-			},
-			"7610": {
-				"col": 0,
-				"lib": "INST.THORAX ET S.NERVEUX"
-			},
-			"7620": {
-				"col": 5,
-				"lib": "OTONN"
-			},
-			"7630": {
-				"col": 4,
-				"lib": "ITUN-IMAD-DERMATO-HEMATO"
-			},
-			"7660": {
-				"col": 2,
-				"lib": "MED.URG.SOINS CRITIQUES"
-			},
-			"taille": 7
-		},
-		"serv": {
-			"0000": {
-				"col": 1,
-				"lib": "Bloc CTCV"
-			},
-			"1020": {
-				"col": 26,
-				"lib": "ENDOCRINOLOGIE"
-			},
-			"1040": {
-				"col": 10,
-				"lib": "MEDECINE INTERNE"
-			},
-			"1070": {
-				"col": 21,
-				"lib": "NEPHROLOGIE-IMMUNOLOGIE"
-			},
-			"1120": {
 				"col": 12,
-				"lib": "HEP.GAST.ENTERO.ASS.NUTRIT"
+				"lib": "um70"
 			},
-			"1150": {
-				"col": 7,
-				"lib": "MAL.INFECTIONS.TROPICALES"
-			},
-			"1160": {
-				"col": 30,
-				"lib": "RHUMATOLOGIE HD"
-			},
-			"1210": {
-				"col": 20,
-				"lib": "NEUROLOGIE"
-			},
-			"1310": {
-				"col": 4,
-				"lib": "PNEUMOLOGIE"
-			},
-			"1410": {
-				"col": 6,
-				"lib": "CARDIOLOGIE"
-			},
-			"1610": {
-				"col": 29,
-				"lib": "PEDIATRIE GENERALE"
-			},
-			"2010": {
-				"col": 18,
-				"lib": "CLIN.CHIR.DIG.ENDOCRIN."
-			},
-			"2062": {
-				"col": 27,
-				"lib": "DETENUS HGRL"
-			},
-			"2080": {
-				"col": 3,
-				"lib": "URGENCES-ACCUEIL"
-			},
-			"2081": {
-				"col": 14,
-				"lib": "UHCD"
-			},
-			"2082": {
-				"col": 22,
-				"lib": "URGENCE-MEDECINE POLYVALENTE"
-			},
-			"2210": {
-				"col": 13,
-				"lib": "UROLOGIE"
-			},
-			"2410": {
+			"0075": {
 				"col": 17,
-				"lib": "CLIN.CHIR.ORTHO ET TRAUMA"
+				"lib": "um75"
 			},
-			"2600": {
-				"col": 0,
-				"lib": "C.T.C.V."
+			"0083": {
+				"col": 18,
+				"lib": "um83"
 			},
-			"2610": {
-				"col": 16,
-				"lib": "P17-C.T.C.V."
+			"0096": {
+				"col": 20,
+				"lib": "um96"
 			},
-			"2620": {
-				"col": 8,
-				"lib": "U.T.T."
+			"0098": {
+				"col": 21,
+				"lib": "um98"
 			},
-			"2630": {
-				"col": 9,
-				"lib": "CHIRURGIE VASCULAIRE"
-			},
-			"2650": {
-				"col": 25,
-				"lib": "UMCA"
-			},
-			"2670": {
-				"col": 5,
-				"lib": "CHIR. CARD. PED. ET CONGENITALES (CCPC)"
-			},
-			"3120": {
-				"col": 24,
-				"lib": "GYNECO-OBSTETRIQUE"
-			},
-			"3430": {
-				"col": 23,
-				"lib": "NEUROCHIR-NEUROTRAUMATO"
-			},
-			"3810": {
-				"col": 11,
-				"lib": "MED. INTENSIVE-REA HD"
-			},
-			"3830": {
-				"col": 19,
-				"lib": "ANESTH.REA.CHIRURGICALE HD"
-			},
-			"3850": {
-				"col": 2,
-				"lib": "ANESTH.REA.CHIRURGICALE HGRL"
-			},
-			"3910": {
-				"col": 15,
-				"lib": "HEMATOLOGIE CLINIQUE"
-			},
-			"4120": {
-				"col": 28,
-				"lib": "UMAC"
-			},
-			"6020": {
-				"col": 31,
-				"lib": "SERV. MED. AIGUE GERIAT."
-			},
-			"taille": 32
+			"taille": 33
 		},
-		"um": {
+		"2017": {
 			"0000": {
 				"col": 1,
 				"lib": "Bloc CTCV"
 			},
-			"1020": {
-				"col": 40,
-				"lib": "UM ENDOCRINOLOGIE"
-			},
-			"1043": {
-				"col": 48,
-				"lib": "UM MAG HGRL"
-			},
-			"1051": {
-				"col": 19,
-				"lib": "MEDECINE INTERNE 7eE - U2"
-			},
-			"1064": {
-				"col": 18,
-				"lib": "MEDECINE INTERNE 7\u00e8E - U1"
-			},
-			"1070": {
-				"col": 33,
-				"lib": "UM NEPHROLOGIE"
-			},
-			"1111": {
-				"col": 21,
-				"lib": "HEP.GAST.ENTERO.ASS.NUTRIT"
-			},
-			"1150": {
-				"col": 10,
-				"lib": "MAL. INFECTIONS TROPICALES"
-			},
-			"1160": {
-				"col": 47,
-				"lib": "UM RHUMATOLOGIE HD"
-			},
-			"1210": {
-				"col": 31,
-				"lib": "UM NEUROLOGIE"
-			},
-			"1215": {
-				"col": 34,
-				"lib": "UM Neuro-vasculaire SI"
-			},
-			"1310": {
-				"col": 5,
-				"lib": "UM PNEUMOLOGIE"
-			},
-			"1322": {
-				"col": 14,
-				"lib": "Pneumo.Surv.Continue UMTR"
-			},
-			"1410": {
-				"col": 8,
-				"lib": "UM CARDIOLOGIE"
-			},
-			"1427": {
-				"col": 39,
-				"lib": "HDJ CARDIOLOGIE"
-			},
-			"1635": {
-				"col": 46,
-				"lib": "SOINS CONT.CLIN.MED.PED"
-			},
-			"1950": {
-				"col": 43,
-				"lib": "N\u00e9phrologie H\u00e9modialyse"
-			},
-			"2010": {
-				"col": 29,
-				"lib": "UM CLIN.CHIR. DIGEST. ENDOCR."
-			},
-			"2062": {
-				"col": 41,
-				"lib": "UM DETENUS HGRL"
-			},
-			"2086": {
-				"col": 4,
-				"lib": "UHTCD"
-			},
-			"2088": {
-				"col": 45,
-				"lib": "MED.POLYV.URGENCE 6\u00e8E"
-			},
-			"2091": {
-				"col": 23,
-				"lib": "ZSCD Urgences"
-			},
-			"2096": {
-				"col": 35,
-				"lib": "MED.POLYV.URGENCE 5SUD"
-			},
-			"2210": {
-				"col": 22,
-				"lib": "UM UROLOGIE"
-			},
-			"2410": {
-				"col": 28,
-				"lib": "UM ORTHOPEDIE HD"
-			},
-			"2421": {
-				"col": 27,
-				"lib": "UM SEPTIQUE OSTEO"
-			},
-			"2600": {
+			"0001": {
 				"col": 0,
-				"lib": "CTCV"
+				"lib": "um1"
 			},
-			"2610": {
-				"col": 26,
-				"lib": "UM C.T.C.V."
+			"0002": {
+				"col": 2,
+				"lib": "um2"
 			},
-			"2620": {
-				"col": 16,
-				"lib": "UM U.T.T."
+			"0003": {
+				"col": 3,
+				"lib": "um3"
 			},
-			"2630": {
-				"col": 17,
-				"lib": "UM CHIRURGIE VASCULAIRE"
+			"0004": {
+				"col": 5,
+				"lib": "um4"
 			},
-			"2670": {
+			"0005": {
+				"col": 9,
+				"lib": "um5"
+			},
+			"0009": {
 				"col": 6,
-				"lib": "CCCA"
+				"lib": "um9"
 			},
-			"3111": {
-				"col": 38,
-				"lib": "UM GYNECOLOGIE"
+			"0010": {
+				"col": 29,
+				"lib": "um10"
 			},
-			"3410": {
-				"col": 44,
-				"lib": "UM NEUROCHIRURGIE"
+			"0011": {
+				"col": 4,
+				"lib": "um11"
 			},
-			"3420": {
+			"0012": {
+				"col": 11,
+				"lib": "um12"
+			},
+			"0013": {
+				"col": 12,
+				"lib": "um13"
+			},
+			"0014": {
+				"col": 13,
+				"lib": "um14"
+			},
+			"0015": {
+				"col": 15,
+				"lib": "um15"
+			},
+			"0016": {
+				"col": 22,
+				"lib": "um16"
+			},
+			"0017": {
+				"col": 10,
+				"lib": "um17"
+			},
+			"0018": {
+				"col": 30,
+				"lib": "um18"
+			},
+			"0020": {
+				"col": 23,
+				"lib": "um20"
+			},
+			"0021": {
+				"col": 14,
+				"lib": "um21"
+			},
+			"0022": {
 				"col": 37,
-				"lib": "UM NEUROTRAUMATOLOGIE"
+				"lib": "um22"
 			},
-			"3710": {
-				"col": 7,
-				"lib": "Cardiologie Soins Intensifs"
+			"0024": {
+				"col": 33,
+				"lib": "um24"
 			},
-			"3711": {
-				"col": 12,
-				"lib": "UM Rythmologie SI"
+			"0026": {
+				"col": 17,
+				"lib": "um26"
 			},
-			"3740": {
-				"col": 11,
-				"lib": "Pneumologie Soins Intensifs"
-			},
-			"3762": {
-				"col": 3,
-				"lib": "UNITE SURV. CONTINUE CHIR."
-			},
-			"3763": {
-				"col": 15,
-				"lib": "SI transplant. coeur-poumons"
-			},
-			"3781": {
-				"col": 36,
-				"lib": "UM CCDE SOINS INTENSIFS 2\u00e8E"
-			},
-			"3790": {
-				"col": 32,
-				"lib": "UM HGE SOINS INTENSIFS 2\u00e8S"
-			},
-			"3810": {
+			"0028": {
 				"col": 20,
-				"lib": "UM REA.MED.POLYV.JM"
+				"lib": "um28"
 			},
-			"3811": {
+			"0031": {
+				"col": 18,
+				"lib": "um31"
+			},
+			"0033": {
+				"col": 38,
+				"lib": "um33"
+			},
+			"0034": {
+				"col": 26,
+				"lib": "um34"
+			},
+			"0035": {
+				"col": 16,
+				"lib": "um35"
+			},
+			"0044": {
+				"col": 8,
+				"lib": "um44"
+			},
+			"0046": {
+				"col": 28,
+				"lib": "um46"
+			},
+			"0050": {
+				"col": 32,
+				"lib": "um50"
+			},
+			"0053": {
 				"col": 24,
-				"lib": "USC M\u00e9dicale"
+				"lib": "um53"
 			},
-			"3830": {
-				"col": 30,
-				"lib": "UM REA.CHIRURGICALE JM"
+			"0054": {
+				"col": 19,
+				"lib": "um54"
 			},
-			"3850": {
-				"col": 13,
-				"lib": "UM REA. CHIR. POLYVALENTE HGRL"
+			"0066": {
+				"col": 35,
+				"lib": "um66"
 			},
-			"3851": {
-				"col": 9,
-				"lib": "USC CHIR. POLY"
+			"0067": {
+				"col": 36,
+				"lib": "um67"
 			},
-			"3870": {
-				"col": 2,
-				"lib": "REA CTCV"
+			"0070": {
+				"col": 7,
+				"lib": "um70"
 			},
-			"3910": {
+			"0075": {
+				"col": 21,
+				"lib": "um75"
+			},
+			"0076": {
+				"col": 39,
+				"lib": "um76"
+			},
+			"0079": {
+				"col": 34,
+				"lib": "um79"
+			},
+			"0084": {
 				"col": 25,
-				"lib": "UM HEMATOLOGIE CLINIQUE"
+				"lib": "um84"
 			},
-			"3916": {
-				"col": 42,
-				"lib": "UM HEMATOLOGIE CLINIQUE HDJ"
+			"0088": {
+				"col": 27,
+				"lib": "um88"
 			},
-			"taille": 49
+			"0096": {
+				"col": 31,
+				"lib": "um96"
+			},
+			"taille": 40
 		}
 	}
 }

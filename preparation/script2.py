@@ -140,7 +140,6 @@ def analyse(an, niv) :
         if  objSqc[k]['bloc'] and len(objSqc[k]['liste']) > 1:
             objSqc[k]['conf-ps'] = str(round(objSqc[k]['occ'] / objSqc[k[:4]]['occ'] * 100, 1)) + '%'
             objSqc[k]['conf-sp'] = str(round(objSqc[k]['occ'] / objSqc[k[5:]]['occ'] * 100, 1)) + '%'
-            print(objSqc[k[:-5]])
             objSqc[k]['conf-sd'] = str(round(objSqc[k]['occ'] / objSqc[k[:-5]]['occ'] * 100, 1)) + '%'
             objSqc[k]['conf-ds'] = str(round(objSqc[k]['occ'] / objSqc[k[-4:]]['occ'] * 100, 1)) + '%'
             

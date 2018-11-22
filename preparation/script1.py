@@ -1,11 +1,11 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+
 import csv
 import datetime, time
 from operator import itemgetter
 import json
 import re 
-import statistics
 import copy
 
 
@@ -173,7 +173,6 @@ for i in range(1, len(db)+1) :
 # découpage des séjours à cheval autour de l'intervention
 print('* Découpage des séjours à cheval')
 i = 0
-# ~ e=0
 while i in range(0, len(db)) :
     if db[i][2] == '0000' :
         try :
@@ -181,9 +180,6 @@ while i in range(0, len(db)) :
             # à cause de mutations anticipées répétées
             while db[i][12] == db[i+1][12] and db[i][5] > db[i+1][5] and \
              db[i][4] < db[i+1][4] :
-                # ~ e+=1
-                # ~ print(e)
-                # ~ print('suppl', db[i][5]-db[i][4], db[i+1][1], db[i+1][3], db[i+1][5]-db[i+1][4], db[i+2][3])
                 del db[i+1]
             # si sortie 1 > sortie 2 : jour différent ou au moins 4h,
             # ou s'il y a ensuite un bloc à ne pas laisser collé
@@ -199,7 +195,6 @@ while i in range(0, len(db)) :
                 if db[i][5] - db[i][4] < datetime.timedelta(hours = 0) :
                     print ("/!\ dates : " , db[i])
             
-                
         except IndexError:
             print('index error', db[i])
             pass
@@ -340,7 +335,6 @@ print('* Codage des positions')
 # codage des positions
 # position = code (um/service...) + position relative par rapport au bloc
 
-
 for niv in dbDiv.keys() :
     for year in dbDiv[niv].keys() :
         # 1° ligne
@@ -395,19 +389,7 @@ for niv in dbDiv.keys() :
 # FORMAT :
 # dbDiv = {niveau : {année : [venue, code, libellé, durée moyenne de séjour (DMS), position]}}
 
-# ~ # export à titre d'exemple
-# ~ for i in range(1, len(dbDiv['um']['2016'])) :
-    # ~ dbDiv['um']['2016'][i][3] = dbDiv['um']['2016'][i][3].strftime('%d%b%Y:%H:%M:%S')
-    # ~ dbDiv['um']['2016'][i][4] = dbDiv['um']['2016'][i][4].strftime('%d%b%Y:%H:%M:%S')
-# ~ with open('sqc_2017um.csv', 'w') as fichier:
-    # ~ fichier.write('venue;code;libelle;date_entree;date_sortie;position\n')
-    # ~ for i in range(1, len(dbDiv['um']['2016'])) :
-        # ~ fichier.write(';'.join(dbDiv['um']['2016'][i])+'\n')
-# ~ for i in range(1, len(dbDiv['um']['2016'])) :
-    # ~ dbDiv['um']['2016'][3] = datetime.datetime.strptime(dbDiv['um']['2016'][i][3], '%d%b%Y:%H:%M:%S')
-    # ~ dbDiv['um']['2016'][4] = datetime.datetime.strptime(dbDiv['um']['2016'][i][4], '%d%b%Y:%H:%M:%S')
 print(dbDiv['um']['2016'][:4])
-
 
 # effectif par positions
 print('* Calcul des effectifs')
@@ -536,8 +518,6 @@ for key, value in mut.items() :
 # dictLinks = {niveau : {année : [position1 (source), position2 (cible), effectif]}}
 
 print('links', niveaux[0], annees[0], len(dictLinks[niveaux[0]][annees[0]]))
-# ~ print('links um 2017', len(dictLinks['2017']['um']))
-
 
 # VERSION 2
 print('* VERSION 2')
@@ -634,8 +614,6 @@ for key, value in mutBis.items() :
      'target' : key[3], 'value' : value})
 
 print('links bis', niveaux[0], annees[0], len(dictLinksBis[niveaux[0]][annees[0]]))
-#print('links um 2017 bis', len(dictLinksBis['um']['2017']))
-
 
 # export
 print("* exports")
@@ -648,7 +626,6 @@ with open('linksBis.json', 'w') as fichier :
     fichier.write(json.dumps(dictLinksBis, indent=1))
 with open('nodesBis.json', 'w') as fichier :
     fichier.write(json.dumps(dictNodesBis,indent=1))
-
 
 
 
@@ -666,9 +643,8 @@ print('* Calcul des séquences')
 
 for niv in dbDiv.keys() :
     for year in dbDiv[niv].keys() :
-        sqc = [['8888/', '0j0/', ['<0> 8888']]]
-        n = 1
-        l = []
+        sqc = [['8888/', '0j0/', ['<0> 8888']]] # indice d'entrée, DMS nulle
+        n = 1 # indice de rang de l'item
         for j in range(0, len(dbDiv[niv][year])-1) : 
             t = dbDiv[niv][year][j][3] # duree de séjour
             
@@ -677,7 +653,7 @@ for niv in dbDiv.keys() :
                 tbis = dbDiv[niv][year][j+1][3]
                 sqc[-1][1] += str(t.days) + 'j' + str(round(t.seconds / 60)) + \
                  '/' + str(tbis.days) + 'j' + str(round(tbis.seconds / 60))   + '/0j0'
-                if dbDiv[niv][year][j][1] == '0000':
+                if dbDiv[niv][year][j][1] == '0000': 
                     sqc[-1][2].extend(['<' + str(n) + '> 1000 <' + \
                      str(n+1) + '> ' + dbDiv[niv][year][j+1][1], '<' + str(n+2) + '> '])
                     sqc[-1][0] += '1000/'
@@ -688,13 +664,17 @@ for niv in dbDiv.keys() :
                 if dbDiv[niv][year][j+1][1] == '0000':
                     sqc[-1][0] += '1000/9999'
                 else :
-                    sqc[-1][0] += dbDiv[niv][year][j+1][1]  + '/9999'
+                    sqc[-1][0] += dbDiv[niv][year][j+1][1]  + '/9999' # indice de sortie
             
             # corps de la séquence
             elif dbDiv[niv][year][j][0] == dbDiv[niv][year][j+1][0] : 
+                # ajout d'un item "durée"
                 sqc[-1][1] += str(t.days) + 'j' + str(round(t.seconds / 60)) + '/'
-                if dbDiv[niv][year][j][1] == '0000':
+                # ajout d'un item "code"
+                if dbDiv[niv][year][j][1] == '0000': # bloc (modification du code pour SPMF qui ne supporte pas 0000)
+                    # format "/"
                     sqc[-1][0] += '1000/'
+                    # format SPMF
                     sqc[-1][2].append('<' + str(n) + '> 1000')
                 else :
                     sqc[-1][0] += dbDiv[niv][year][j][1] + '/'
@@ -710,24 +690,18 @@ for niv in dbDiv.keys() :
                 else :
                     sqc[-1][2].extend(['<' + str(n) + '> ' + dbDiv[niv][year][j][1], '<' + str(n+1) + '> 9999'])
                     sqc[-1][0] += dbDiv[niv][year][j][1] + '/9999'
-                # ~ #if sqc[-1][0] == '1111/1000/9999' :
-                    # ~ #print('bloc seul', dbDiv[niv][year][j])
                 sqc.append(['8888/', '0j0/', ['<0> 8888']])
                 n = 1
-        for j in range(0, len(sqc)) : 
-            l.append(len(sqc[j][2])-2)
         
         print('* exports', niv, year)
         with open('sqc-'+niv+year, 'w') as fichier :
+            # format SPMF, séquence des codes
             for s in sqc :
                 fichier.write(' -1 '.join(s[2])+' -1 -2\n')
         with open('sqc-'+niv+year+'duree', 'w') as fichier :
+            # format "/", séquence des codes et des DMS
             for s in sqc :
                 fichier.write(s[0] + ';' + s[1] + '\n')
-        
-        #print(niv, dbDiv[niv][year][0], len(dbDiv[niv][year])-1)
-        #print('moy', statistics.mean(l))
-        #print('mdn', statistics.median(l))
 
 
 # FORMAT :
@@ -791,7 +765,7 @@ for niv in lsCodes.keys() :
         for ls in lsCodes[niv][year].values() :
             if len(ls) > seuil :
                 seuil = len(ls)
-        seuil *= 0.05   # seuil à 5%
+        seuil *= 0.05   # seuil à 5% des venues
         i = 1
         for code, ls in lsCodes[niv][year].items() : 
             if len(ls) < seuil :
@@ -818,7 +792,6 @@ for niv in dbDiv.keys() :
         iAutre = libelle[-1][0]
         libelle.sort
         print(niv, year, iAutre, "libelles")
-        #print(libelle)
         
         for i in range(0, len(dbDiv[niv][year])) : 
             # mesure de la durée de séjour :
@@ -837,7 +810,7 @@ for niv in dbDiv.keys() :
 
             dbDiv[niv][year][i].append(h) # indice de l'heure de fin
             dbDiv[niv][year][i].append(d) # indice du jour de fin
-            # ~ print(dbDiv[niv][year][i])
+
             # remplissage de la base de code
             if dbDiv[niv][year][i][8]> len(lsCodes[niv][year]['table']) : # ajout de nouvelles lignes vides
                 while dbDiv[niv][year][i][8] > len(lsCodes[niv][year]['table']) :

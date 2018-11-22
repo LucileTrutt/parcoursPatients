@@ -1,24 +1,21 @@
-
 document.getElementById('pm1').addEventListener('submit', function(e) {e.preventDefault();});
-document.getElementById('pm2').addEventListener('submit', function(e) {e.preventDefault();});
 
+document.getElementById('bouton1').addEventListener('click', change);
 document.getElementById('mask1').addEventListener('click', masquer1);
 document.getElementById('mask1bis').addEventListener('click', afficher1);
 
-document.getElementById('bouton1').addEventListener('click', change);
-
 // action générale
 function change() {
-	var annee = document.getElementById('annee').value
-	var minVenues = parseInt(document.getElementById('preci').value)
-	var limiteMvtPre = - parseInt(document.getElementById('max_pre').value) -1
-	var limiteMvtPost = parseInt(document.getElementById('max_post').value) +1
+	var annee = document.getElementById('annee').value;
+	var minVenues = parseInt(document.getElementById('preci').value);
+	var limiteMvtPre = - parseInt(document.getElementById('max_pre').value) -1;
+	var limiteMvtPost = parseInt(document.getElementById('max_post').value) +1;
 	
 	if (limiteMvtPre == -1) {
-		limiteMvtPre = 0
+		limiteMvtPre = 0;
 	}
 	if (limiteMvtPost == 1) {
-		limiteMvtPost = 0
+		limiteMvtPost = 0;
 	}
 
 	var radios = document.getElementsByName('niveau');
@@ -29,10 +26,12 @@ function change() {
 	}
 	
 	if (this.form.preci.value && this.form.max_pre.value && this.form.max_post.value){
+		console.log('* Module 1 *')
 		dessin(annee, minVenues, limiteMvtPre, limiteMvtPost, niv);
 		nombre(annee);
+		tbLabel1(annee, niv);
 	}
-};
+}
 
 function nombre(annee){
   switch (annee){
@@ -51,72 +50,84 @@ function nombre(annee){
       document.getElementById('nb2').textContent="0";
       document.getElementById('nb3').textContent="0";
   } 
-};
+}
 
 
 function dessin(annee, minVenues, limiteMvtPre, limiteMvtPost, niv){
-	//~ console.log("démarrage");
+	// version avec cumul de toutes les interventions à la même position
 	if (document.getElementById('cumul').checked == true) {
+		//récupération des noeuds
 		var request = new XMLHttpRequest();
 		request.open('GET','db/nodesbis.json');
 		request.responseType = 'json';
 		request.send();
 		request.onload = function() {
 			var nodes = request.response;
-			//console.log(nodes[annee][niv]["+0"]["0000"]["value"]);
-			var resultat1 = triNodes(nodes[annee][niv], minVenues, limiteMvtPre, limiteMvtPost);
+			var resultat1 = triNodes(nodes[niv][annee], minVenues,
+			 limiteMvtPre, limiteMvtPost);
 			var arrNodes = resultat1['arr'];
 			var dictNodes = resultat1['dict'];
-			//console.log("coucou", arrNodes[5]);
+			
+			// FORMAT :
+			// nodes = {distance :{code :{libellé, effectif1 (value pour calculs), effectif2(étiquette), 
+			//  proportion de l'effectif total, position, code (groupe), indice de largeur}}}
+			// arrNodes = [id noeud : {libellé, effectif1 (value pour calculs), effectif2(étiquette), 
+			//  proportion de l'effectif total, position, code (groupe), indice de largeur}]
+			// dictNodes = {position : id noeud}
 
-
+			// récupération des liens
 			var request2 = new XMLHttpRequest();
 			request2.open('GET','db/linksbis.json');
 			request2.responseType = 'json';
 			request2.send();
 			request2.onload = function() {
 				var links = request2.response;
-				var arrLinks = triLinks(links[annee][niv], dictNodes, arrNodes, minVenues, limiteMvtPre, limiteMvtPost);
+				var arrLinks = triLinks(links[niv][annee], dictNodes,
+				 arrNodes, minVenues, limiteMvtPre, limiteMvtPost);
+				
+				// FORMAT :
+				// links = {niveau : {année : [position1 (source), position2 (cible), effectif]}}
+				// arrLinks = [id lien : {source (id noeud), cible (id noeud), valeur}]
 			}
 		}
+	// version centrée sur le premier bloc sans retour en arrière
 	} else {
+		//récupération des noeuds
 		var request = new XMLHttpRequest();
 		request.open('GET','db/nodes.json');
 		request.responseType = 'json';
 		request.send();
 		request.onload = function() {
 			var nodes = request.response;
-			console.log('data', nodes[annee][niv]);
-			var resultat1 = triNodes(nodes[annee][niv], minVenues, limiteMvtPre, limiteMvtPost);
+			var resultat1 = triNodes(nodes[niv][annee], minVenues,
+			 limiteMvtPre, limiteMvtPost);
 			var arrNodes = resultat1['arr'];
 			var dictNodes = resultat1['dict'];
-			//~ console.log("arrNodes");
-			//~ console.log(arrNodes);
-			//~ console.log("dictNodes");
-			//~ console.log(dictNodes);
 			
+			// récupération des liens
 			var request2 = new XMLHttpRequest();
 			request2.open('GET','db/links.json');
 			request2.responseType = 'json';
 			request2.send();
 			request2.onload = function() {
 				var links = request2.response;
-				//~ console.log("links[annee][niv]")
-				//~ console.log(links[annee][niv]);
-				var arrLinks = triLinks(links[annee][niv], dictNodes, arrNodes, minVenues, limiteMvtPre, limiteMvtPost);
-				//~ console.log(arrLinks);
-				
+				var arrLinks = triLinks(links[niv][annee], dictNodes,
+				 arrNodes, minVenues, limiteMvtPre, limiteMvtPost);
 			}
 		}
 	}
-};
+}
 
 
 function triNodes(lsNodes, minVenues, limiteMvtPre, limiteMvtPost){
+	// création de la liste des noeuds
+	
 	for (position in lsNodes){
 		if((position < limiteMvtPre) || (position > limiteMvtPost)){
+			// tri des positions entre les paramètres min et max par rapport au bloc
 			delete lsNodes[position];
-		} else if ((position == limiteMvtPre) && (limiteMvtPre != 0)) { // crea du node "début"
+		} else if ((position == limiteMvtPre) && (limiteMvtPre != 0)) { 
+			// création du node "début du séjour"
 			for (code in lsNodes[position]) {
 				if (typeof lsNodes[position]['debut'] != "undefined") {
 					lsNodes[position]['debut'].units += ", " + code;
@@ -125,12 +136,15 @@ function triNodes(lsNodes, minVenues, limiteMvtPre, limiteMvtPost){
 					lsNodes[position]['debut'].effectif += lsNodes[position][code].effectif;
 					delete lsNodes[position][code];
 				} else {
-					lsNodes[position]['debut'] = new Object({libelle: 'début du séjour', value : lsNodes[position][code].value, effectif : lsNodes[position][code].effectif,
-					 id : 'debut' + position, units : code, lsId : [lsNodes[position][code].id], group : 'début du séjour', coef : 1.2});
+					lsNodes[position]['debut'] = new Object({libelle: 'début du séjour',
+					 value : lsNodes[position][code].value, effectif : lsNodes[position][code].effectif,
+					 id : 'debut' + position, units : code, lsId : [lsNodes[position][code].id], 
+					 group : 'début du séjour', coef : 1.2});
 					delete lsNodes[position][code];
 				}
 			}
-		} else if ((position == limiteMvtPost) && (limiteMvtPost != 0)) { // crea du node "suite"
+		} else if ((position == limiteMvtPost) && (limiteMvtPost != 0)) { 
+			// création du node "suite du séjour"
 			for (code in lsNodes[position]) {
 				if (typeof lsNodes[position]['suite'] != "undefined") {
 					lsNodes[position]['suite'].units += ", " + code;
@@ -145,8 +159,9 @@ function triNodes(lsNodes, minVenues, limiteMvtPre, limiteMvtPost){
 				}
 			}
 		} else {
+			// création du node "autre"
 			for (code in lsNodes[position]) {
-				if ((lsNodes[position][code].prop < minVenues) && (lsNodes[position][code]["libelle"] != "Bloc CTCV")) { // crea du node "autre"
+				if ((lsNodes[position][code].prop < minVenues) && (lsNodes[position][code]["libelle"] != "Bloc CTCV")) { 
 					if (typeof lsNodes[position]['autre'] != "undefined") {
 						lsNodes[position]['autre'].units += ", " + code;
 						lsNodes[position]['autre'].lsId.push(lsNodes[position][code].id);
@@ -162,11 +177,12 @@ function triNodes(lsNodes, minVenues, limiteMvtPre, limiteMvtPost){
 				}
 			}
 		}
-		if (position == "+0") {
-			console.log('test bloc 1', lsNodes[position])
-		}
+		//~ if (position == "+0") {
+			//~ console.log('test bloc 1', lsNodes[position]);
+		//~ }
 	}
-	// créa de la liste des nodes avec leur indice
+	
+	// création de la liste des nodes avec leur indice d'identification
 	var arrNodes = [];
 	var dictNodes = new Object;
 	var i = 0;
@@ -178,31 +194,25 @@ function triNodes(lsNodes, minVenues, limiteMvtPre, limiteMvtPost){
 			lsNodes[position][code]['libelle'] == 'suite du séjour') {
 				lsNodes[position][code].lsId.forEach(function(element){
 					dictNodes[element] = lsNodes[position][code]['indice'];
-					
-					//~ if ((limiteMvtPre == 0) && (lsNodes[position][code]['libelle'] == 'début du séjour')){
-						//~ lsNodes[position][code]['libelle'] = 'Bloc CTCV'
-						//~ lsNodes[position][code]['group'] = 'Bloc CTCV'
-					//~ } else if ((limiteMvtPost == 0) && (lsNodes[position][code]['libelle'] == 'suite du séjour')){
-						//~ lsNodes[position][code]['libelle'] = 'Bloc CTCV'
-						//~ lsNodes[position][code]['group'] = 'Bloc CTCV'
-					//~ }
 				});
 			} else if (position == "+0") {
-				
 				dictNodes[lsNodes[position][code]['id']] = lsNodes[position][code]['indice'];
-				console.log('test bloc 2', dictNodes[lsNodes[position][code]['id']])
+				//~ console.log('test bloc 2', dictNodes[lsNodes[position][code]['id']])
 			} else {
 				dictNodes[lsNodes[position][code]['id']] = lsNodes[position][code]['indice'];
 			}
 			i += 1;
 		}
 	}
-
+	
+	// retour des nodes créés sous forme de liste et de dictionnaire
 	return {arr : arrNodes, dict : dictNodes};
 }
 
 	
 function triLinks(arr, dictNodes, arrNodes, minVenues, limiteMvtPre, limiteMvtPost) {
+	// création de la listes des liens
+	
 	// renommage des sources et targets
 	arr.forEach(function(element) {
 		if (dictNodes.hasOwnProperty(element['target'])) {
@@ -223,7 +233,7 @@ function triLinks(arr, dictNodes, arrNodes, minVenues, limiteMvtPre, limiteMvtPo
 			i += 1;
 		}
 	}
-	// cumul des doublons en poassant par un objet
+	// cumul des doublons (en passant par un format objet)
 	//~ console.log("arr trié");
 	//~ console.log(arr);
 	objLinks = {};
@@ -232,9 +242,7 @@ function triLinks(arr, dictNodes, arrNodes, minVenues, limiteMvtPre, limiteMvtPo
 	for (i = 0; i < arr.length; i++) {
 		if (objLinks.hasOwnProperty(arr[i].source)) {
 			if (objLinks[arr[i].source].hasOwnProperty(arr[i].target)) {
-				//~ console.log(obj[arr[i].source])
 				objLinks[arr[i].source][arr[i].target] += arr[i].value;
-				//~ console.log(obj[arr[i].source])
 			} else {
 				objLinks[arr[i].source][arr[i].target] = arr[i].value;
 			}
@@ -243,7 +251,8 @@ function triLinks(arr, dictNodes, arrNodes, minVenues, limiteMvtPre, limiteMvtPo
 			objLinks[arr[i].source][arr[i].target] = arr[i].value;
 		}
 	}
-	for (s in objLinks) { // remise sous forme de liste
+	// remise sous forme de liste
+	for (s in objLinks) { 
 		for (t in objLinks[s]) {
 			l = new Object();
 			l.source = s;
@@ -253,42 +262,33 @@ function triLinks(arr, dictNodes, arrNodes, minVenues, limiteMvtPre, limiteMvtPo
 			arrLinks.push(l)
 		}
 	}
-	//~ console.log("objLinks");
-	//~ console.log(objLinks);
-	//~ console.log("arrLinks");
-	//~ console.log(arrLinks);
-	
 	
 	var sqc = new Object();
 		sqc.nodes = arrNodes;
 		sqc.links = arrLinks;
 		console.log(sqc);
-			
+		
+		// FORMAT :
+		// sqc = {nodes :[id noeud : {libellé, effectif1 (value pour calculs), effectif2(étiquette), 
+		//  proportion de l'effectif total, position, code (groupe), indice de largeur}],
+		//  links : [id lien : {source (id noeud), cible (id noeud), valeur}]}
+
 		graph(sqc);
-
-	//~ return arrLinks;
-
 }
 
 
 function graph(sqc){
+	// création du diagramme de Sankey
 
 	d3.select("#graph1").selectAll("*").remove();
 	
-	//~ var dragmove = function(d) {
-		//~ d3.select(this).attr("transform", 
-			//~ "translate(" + d.x + "," + (
-					//~ d.y = Math.max(0, Math.min(height - d.dy, d3.event.y))
-				//~ ) + ")");
-		//~ sankey.relayout();
-		//~ link.attr("d", path);}
-		
+	// paramétrage de base
 	var margin = {top: 10, right: 10, bottom: 10, left: 10},
 		width = window.innerWidth*0.78,
 		height = window.innerHeight*0.75;
 		//~ width = +d3.select("#graph1").attr("width")- margin.left - margin.right,
 		//~ height = +d3.select("#graph1").attr("height")- margin.top - margin.bottom;
-		
+	
 	var svg = d3.select("#graph1").append("svg")
         .attr("width", width + margin.left + margin.right)
         .attr("height", height + margin.top + margin.bottom)
@@ -296,7 +296,7 @@ function graph(sqc){
       .append("g")
         .attr("transform", 
               "translate(" + margin.left + "," + margin.top + ")");
-
+    
 	var formatNumber = d3.format(",.0f"),
 		format = function(d) { 
 			if (formatNumber(d) == "1") {
@@ -306,12 +306,14 @@ function graph(sqc){
 			}},
 		color = d3.scaleOrdinal(d3.schemeCategory20);
 
+	// création du diagramme
 	var sankey = d3.sankey()
 		.nodeWidth(15)
 		.nodePadding(10)
 		.extent([[1, 1], [width - 1, height - 6]])
 		.nodeAlign(d3.sankeyCenter);
 
+	// création des liens
 	var link = svg.append("g")
 		.attr("class", "links")
 		.attr("fill", "none")
@@ -319,21 +321,21 @@ function graph(sqc){
 		.attr("stroke-opacity", 0.2)
 	  .selectAll("path");
 
+	// création des noeuds
 	var node = svg.append("g")
 		.attr("class", "nodes")
 		.attr("font-family", "sans-serif")
 		.attr("font-size", 10)
 	  .selectAll("g");
 
-	//~ d3.json(sqc, function(error, sqc2) {
-	  //~ if (error) throw error;
+	  //~ console.log("avant-sankey", sqc.nodes[5]);
 
-	  console.log("avant-sankey", sqc.nodes[5]);
-
+	// élaboration du diagramme (script externe)
 	  sankey(sqc);
 
-	  console.log("apres-sankey", sqc.nodes[5]);
+	  //~ console.log("apres-sankey", sqc.nodes[5]);
 
+	// informations graphiques des liens
 	  link = link
 		.data(sqc.links)
 		.enter().append("path")
@@ -344,6 +346,7 @@ function graph(sqc){
 	  link.append("title")
 		  .text(function(d) { return d.source.group + " → " + d.target.group + "\n" + format(d.value); });
 
+	// informations graphiques des noeuds
 	  node = node
 		.data(sqc.nodes)
 		.enter().append("g")
@@ -361,7 +364,8 @@ function graph(sqc){
 		  .attr("x", function(d) { return d.x0; })
 		  .attr("y", function(d) { return d.y0; })
 		  .attr("height", function(d) { return d.y1 - d.y0; })
-		  .attr("width", function(d) { return (d.x1 - d.x0)* d.coef; })  // *******************  coef en fct dms
+		   // coefficient en fonction de la DMS (par classes ou proportionnel) :
+		  .attr("width", function(d) { return (d.x1 - d.x0)* d.coef; }) 
 		  .attr("fill", function(d) { return color(d.group.replace(/ .*/, "")); })
 		  .attr("stroke", "#000");
 
@@ -384,7 +388,7 @@ function graph(sqc){
 			  } else {
 			    return d.libelle + "\n" + format(d.effectif) + "\nDMS = " + d.dms; 
 			  }});
-}; 
+}
 
 function masquer1() {
 	document.getElementById('tb1').style.display = 'none';
@@ -396,87 +400,32 @@ function afficher1() {
 	document.getElementById('tb1bis').style.display = 'none';
 }
 
-
-
-
-//~ function modifyText() {
-  //~ var t2 = document.getElementById("t2");
-  //~ if (t2.firstChild.nodeValue == "three") {
-    //~ t2.firstChild.nodeValue = "two";
-  //~ } else {
-    //~ t2.firstChild.nodeValue = "three";
-  //~ }
-//~ }
-
-//~ // ajout d'un écouteur d'évènement au tableau
-//~ var el = document.getElementById("outside");
-//~ el.addEventListener("click", modifyText, false);
-
-
-
-
-//~ var q = squel.select();
-//~ console.log(
-    //~ squel.select()
-        //~ .from("nodes")
-        //~ .field("nodes.code")
-        //~ .field("nodes.libelle")
-        //~ .where("nodes.annee = '2017'")
-        //~ .where("nodes.niveau = 'autoris'")
-        //~ .toParam()
-//~ );
-
-//~ var connection = new ActiveXObject("ADODB.Connection") ;
-
-//~ var connectionstring="Data Source=<server>;Initial Catalog=<catalog>;User ID=<user>;Password=<password>;Provider=SQLOLEDB";
-
-//~ connection.Open(connectionstring);
-//~ var rs = new ActiveXObject("ADODB.Recordset");
-
-//~ rs.Open("SELECT * FROM table", connection);
-//~ rs.MoveFirst
-//~ while(!rs.eof)
-//~ {
-   //~ document.write(rs.fields(1));
-   //~ rs.movenext;
-//~ }
-
-//~ rs.close;
-//~ connection.close; 
-
-//~ var bouton = document.getElementById('bouton1');
-
-//~ bouton.addEventListener('click', liste);
-
-//~ var db = openDatabase('base.db');
-//~ var liste = function(){
-//~ db.transaction(function (tx) {
-  //~ tx.executeSql('SELECT * FROM nodes', [], function (tx, results) {
-  //~ var len = results.rows.length, i;
-  //~ for (i = 0; i < len; i++) {
-    //~ console.log(results.rows.item(i).text);
-  //~ }
-//~ });
-//~ });
-//~ };
-
-
-
-
-
-
-//~ var liste = function() {
-	//~ var xhr_object = new XMLHttpRequest(); 
-
-	//~ xhr_object.open("POST", "test.php", true); 
-
-	//~ xhr_object.onreadystatechange = function() { 
-		//~ if (xhr_object.readyState == 4) 
-			//~ eval(xhr_object.responseText); 
-	//~ } 
-	 
-	//~ xhr_object.setRequestHeader("Content-type", "application/x-www-form-urlencoded"); 
-	//~ var data = "family="+escape(l1.options[index].value)+"&form="+f.name+"&select=list2"; 
-	//~ xhr_object.send('2016'); 
-		//~ }
-//~ }
+function tbLabel1(annee, niv) {
+	// tableau des libellés
+	
+	var request = new XMLHttpRequest();
+	request.open('GET','db/lsLib.json');
+	request.responseType = 'json';
+	request.send();
+	request.onload = function() {
+		var label = request.response;
+		var lab = []
+		label = label[niv][annee];
+		for(code in label) {
+			lab.push([code, label[code].lib]);
+		}
+		lab.sort();
+		var tab = document.getElementById('lib1');
+		
+		while (tab.firstChild) {
+			tab.deleteRow(0);
+		}
+		for (code in lab) {
+			if ((lab[code][0] != "taille") && (lab[code][0] != "0000")) {
+				var ligne = tab.insertRow();
+				ligne.insertCell().innerHTML = lab[code][0];
+				ligne.insertCell().innerHTML = lab[code][1];
+			}
+		}
+	}
+}

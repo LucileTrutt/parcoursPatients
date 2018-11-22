@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+
 from operator import itemgetter
 import datetime, time
 import json
@@ -33,7 +34,6 @@ def analyse(an, niv) :
     # lsSqc = [[code1, code2, ...], séquence (sep = '/'), support ( = effectif en séjours)]
 
     print('total :', len(lsSqc))
-    # ~ print(lsSqc[-1])
 
     # calcul de l'effectif total
     # ajout de l'indicateurs de présence du bloc 
@@ -76,7 +76,6 @@ def analyse(an, niv) :
                 objSqc[lsSqc[i][1]]['liste'].append(['8888', datetime.timedelta(), 'Entree'])
             else :
                 objSqc[lsSqc[i][1]]['liste'].append([lsSqc[i][0][j], datetime.timedelta()])
-    # ~ print('objSqc', len(objSqc))
     
     # FORMAT : 
     # objSqc = {séquence : {'liste' : [[code, durée de séjour (nul)]],
@@ -104,7 +103,7 @@ def analyse(an, niv) :
              minutes = int(duree[1]))
 
     # ajout des durées dans la base de motifs
-    # calcul du nombre total d'occurences des motifs (éventuellement plusieurs par séjour)
+    # calcul du nombre total d'occurences des motifs (possiblement plusieurs par séjour)
     print('occurences')
     for i in range(0, len(lsDuree)) :
         for k in objSqc.keys() :
@@ -115,7 +114,8 @@ def analyse(an, niv) :
                 while k in parcours :
                     position2 = int(parcours.find(k) / 5) # position dans l'image du motif
                     objSqc[k]['occ'] += 1 
-                    position += position2 # saut de l'indice à la fin du motif pour recommencer la recherche dans le reste de la séquence
+                    # saut de l'indice à la fin du motif pour recommencer la recherche dans le reste de la séquence
+                    position += position2
                     if  objSqc[k]['bloc'] :
                         for j in range(0, l) :
                             objSqc[k]['liste'][j][1] += lsDuree[i][2][position+j] # cumul des durées de séjour

@@ -18,7 +18,7 @@ niveaux = ['um', 'serv', 'pole', 'autoris']
 # import de la base de séjours
 print('* Import des séjours')
 baseSej = []
-with open('rum.csv', newline = '') as f:
+with open('RUM.csv', newline = '') as f:
     reader = csv.reader(f, delimiter = ';')
     for row in reader:
         baseSej.append(row)
@@ -27,9 +27,10 @@ print('base : ', len(baseSej))
 
 # mise en forme 
 for i in range(0, len(baseSej)) :
-    # séparation des codes et des libelléq
-    baseSej[i][8:] = [baseSej[i][8][0:4],baseSej[i][8][6:]]
-    baseSej[i][7:8] = [baseSej[i][7][0:4],baseSej[i][7][6:]]
+    # séparation des codes et des libellés
+    baseSej[i][7:] = [baseSej[i][7][0:4],baseSej[i][7][6:]]
+    baseSej[i][6:7] = [baseSej[i][6][0:4],baseSej[i][6][6:]]
+    baseSej[i][5:6] = [baseSej[i][5][0:4],baseSej[i][5][6:]]
     baseSej[i][2:3] = [baseSej[i][2][0:4],baseSej[i][2][6:]]
     # dates 
     baseSej[i][4] = datetime.datetime.strptime(baseSej[i][4],
@@ -42,7 +43,7 @@ for i in range(0, len(baseSej)) :
     elif 'B' in baseSej[i][6] :
         baseSej[i][6] = re.sub(r'B', r'02', baseSej[i][6])
     baseSej[i][6] = baseSej[i][6].zfill(4)
-
+print(baseSej[0:5])
 # FORMAT :
 # baseSej = [[année, ipp, code UM, libellé UM, date d'entrée,
 #   date de sortie, code service, libellé service, code pôle,
@@ -108,10 +109,14 @@ for i in range(0, len(chir)) :
 
 # vérification
 a = 0
-for i in range(0, len(chir)) :
+i = 0
+while i in range(0, len(chir)) :
     if chir[i][-1] != 'ok' :
         a += 1
         print('non placé : ', chir[i][:5], a)
+        del(chir[i])
+    else :
+           i +=1
 
 a = 0
 b = 0
@@ -230,9 +235,8 @@ while i in range(0, len(db)) :
         # ~ db[i][0] = '3'
         del db[i]   
         
-    # suppression des séjours en 2018 
-    elif db[i][0] == '2018' :
-        # ~ print(db[i])
+    # suppression des séjours hors années ciblées 
+    elif db[i][0] not in annees :
         if db[i][12] in lsVenues.keys() :
             del lsVenues[db[i][12]]
         del db[i]
@@ -855,7 +859,12 @@ for niv in dbDiv.keys() :
             for i in range(0, len(libelle)) :
                 libelle[i] = libelle[i][1]
             fichier.write(','.join(libelle) + '\n')
-            for i in range(0, 91) : # info sur les 90 premiers jours d'hospit
+            # info sur les 90 premiers jours d'hospit
+            if len(lsCodes[niv][year]['table']) < 91 :
+                l = len(lsCodes[niv][year]['table'])
+            else :
+                l = 91
+            for i in range(0, l) : 
                 fichier.write(str(j) + ',')
                 for lib in range(0, len(libelle) - 1) :
                     fichier.write(str(lsCodes[niv][year]['table'][i][lib]) + ',')

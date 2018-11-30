@@ -848,7 +848,7 @@ for niv in dbDiv.keys() :
 # dbDiv = {niveau : {année : [venue, code, libellé, DMS, position, H début, j début, H fin, j fin]}}
 
 
-# ~ # export de la base UM agrégée
+# ~ # export de la base UM agrégée (utilisation externe)
 # ~ # en jours
 # ~ with open('db_um.csv', 'w') as fichier :
     # ~ fichier.write('venue,code_um,lib_um,debut,fin\n')
@@ -885,7 +885,7 @@ for niv in dbDiv.keys() :
             # ~ fichier.write(','.join([dbDiv['um']['2017'][i][0], 'autre', 'autre',
               # ~ '%.2f' %(dbDiv['um']['2017'][i][5]),  '%.2f' %(dbDiv['um']['2017'][i][7])])+ '\n')
 
-# ~ # export base UM sans les regroupements en code "autre"
+# ~ # export base UM sans les regroupements en code "autre" (utilisation externe)
 # ~ # en jours
 # ~ with open('db_um_large.csv', 'w') as fichier :
     # ~ fichier.write('venue,code_um,lib_um,debut,fin\n')

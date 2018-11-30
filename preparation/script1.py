@@ -848,8 +848,27 @@ for niv in dbDiv.keys() :
 # dbDiv = {niveau : {année : [venue, code, libellé, DMS, position, H début, j début, H fin, j fin]}}
 
 
-# ~ # export de la base UM agrégée (utilisation externe) 
+# ~ # export de la base UM agrégée
+# ~ # en jours
 # ~ with open('db_um.csv', 'w') as fichier :
+    # ~ fichier.write('venue,code_um,lib_um,debut,fin\n')
+    # ~ for i in range(0, len(dbDiv['um']['2016'])) :
+        # ~ if lsCodes['um']['2016'][dbDiv['um']['2016'][i][1]] or dbDiv['um']['2016'][i][1] == '0000' :
+            # ~ fichier.write(','.join([','.join(dbDiv['um']['2016'][i][0:3]),
+             # ~ str(dbDiv['um']['2016'][i][6]), str(dbDiv['um']['2016'][i][8])])+ '\n')
+        # ~ else :
+            # ~ fichier.write(','.join([dbDiv['um']['2016'][i][0], 'autre', 'autre',
+             # ~ str(dbDiv['um']['2016'][i][6]), str(dbDiv['um']['2016'][i][8])])+ '\n')
+    # ~ for i in range(0, len(dbDiv['um']['2017'])) :
+        # ~ if lsCodes['um']['2017'][dbDiv['um']['2017'][i][1]] or dbDiv['um']['2017'][i][1] == '0000' :
+            # ~ fichier.write(','.join([','.join(dbDiv['um']['2017'][i][0:3]),
+             # ~ str(dbDiv['um']['2017'][i][6]), str(dbDiv['um']['2017'][i][8])])+ '\n')
+        # ~ else :
+            # ~ fichier.write(','.join([dbDiv['um']['2017'][i][0], 'autre', 'autre',
+             # ~ str(dbDiv['um']['2017'][i][6]), str(dbDiv['um']['2017'][i][8])])+ '\n')
+
+# ~ # en heures
+# ~ with open('db_um2.csv', 'w') as fichier :
     # ~ fichier.write('venue,code_um,lib_um,debut,fin\n')
     # ~ for i in range(0, len(dbDiv['um']['2016'])) :
         # ~ if lsCodes['um']['2016'][dbDiv['um']['2016'][i][1]] or dbDiv['um']['2016'][i][1] == '0000' :
@@ -866,8 +885,19 @@ for niv in dbDiv.keys() :
             # ~ fichier.write(','.join([dbDiv['um']['2017'][i][0], 'autre', 'autre',
               # ~ '%.2f' %(dbDiv['um']['2017'][i][5]),  '%.2f' %(dbDiv['um']['2017'][i][7])])+ '\n')
 
-# ~ # export base UM sans les regroupements en code "autre" (utilisation externe) 
+# ~ # export base UM sans les regroupements en code "autre"
+# ~ # en jours
 # ~ with open('db_um_large.csv', 'w') as fichier :
+    # ~ fichier.write('venue,code_um,lib_um,debut,fin\n')
+    # ~ for i in range(0, len(dbDiv['um']['2016'])) :
+        # ~ fichier.write(','.join([','.join(dbDiv['um']['2016'][i][0:3]),
+         # ~ str(dbDiv['um']['2016'][i][6]), str(dbDiv['um']['2016'][i][8])])+ '\n')
+    # ~ for i in range(0, len(dbDiv['um']['2017'])) :
+        # ~ fichier.write(','.join([','.join(dbDiv['um']['2017'][i][0:3]),
+         # ~ str(dbDiv['um']['2017'][i][6]), str(dbDiv['um']['2017'][i][8])])+ '\n')
+
+# ~ # en heures
+# ~ with open('db_um_large2.csv', 'w') as fichier :
     # ~ fichier.write('venue,code_um,lib_um,debut,fin\n')
     # ~ for i in range(0, len(dbDiv['um']['2016'])) :
         # ~ fichier.write(','.join([','.join(dbDiv['um']['2016'][i][0:3]),

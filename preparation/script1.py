@@ -845,7 +845,7 @@ for niv in dbDiv.keys() :
                 j += 1
 
 # FORMAT :
-# dbDiv = {niveau : {année : [venue, code, libellé, DMS, position, H début, H fin]}}
+# dbDiv = {niveau : {année : [venue, code, libellé, DMS, position, H début, j début, H fin, j fin]}}
 
 
 # ~ # export de la base UM agrégée (utilisation externe) 

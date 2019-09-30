@@ -14,3 +14,6 @@ Pour la préparation des données : les scripts et un guide d'utilisation sont f
 
 
 Les jeux de données sont anonymisés. Il n'y aura pas de correspondance entre les fichiers donnés à titre d'exmple pour les scripts de data-management et les fichiers utilisés pour le fonctionnement de l'interface. Seule la structure des données est maintenue.
+
+/!\ Une mise à jour de Mozilla de juillet 2019 ne permet plus l'accès direct aux fichiers de dossiers parents (CORS). Si vous souhaitez faire fonctionner le script, il faut installer la version 67.0.4 au maximum.
+Vous pouvez retrouver un installeur ici : https://ftp.mozilla.org/pub/firefox/releases/67.0.4/
